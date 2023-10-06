@@ -4,6 +4,9 @@ import FinalSDK
 
 public class VnptEkycPlugin: NSObject, FlutterPlugin, ICEkycCameraDelegate{
   var flutterResult: FlutterResult?
+  var tokenId: String?
+  var tokenKey: String?
+  var acccessToken: String?
 
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "vnpt_ekyc", binaryMessenger: registrar.messenger())
@@ -15,6 +18,10 @@ public class VnptEkycPlugin: NSObject, FlutterPlugin, ICEkycCameraDelegate{
     switch call.method {
     case "getEkycVNPT":
       self.flutterResult = result
+      guard let args = call.arguments as? [String : Any] else {return}
+      self.tokenId = args["tokenId"] as? String
+      self.tokenKey = args["tokenKey"] as? String
+      self.acccessToken = args["accessToken"] as? String
       if let controller = UIApplication.shared.delegate?.window??.rootViewController  as? FlutterViewController {
           DispatchQueue.main.async {
             self.openSDKeKYC(controller)
@@ -28,13 +35,17 @@ public class VnptEkycPlugin: NSObject, FlutterPlugin, ICEkycCameraDelegate{
   func openSDKeKYC(_ controller:UIViewController) {
         let objCamera = ICEkycCameraRouter.createModule() as! ICEkycCameraViewController
         // Key test on side Product
-        SaveData.shared().sdTokenKey = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAN1TyucVW7qKt8TD7e3JYxUPURu9i6LvC+jJbF7OM6bLL+GGZnjZiev4KrUL8ZE7p874RpY2gcu0F9zUmFst+/8CAwEAAQ=="
-        SaveData.shared().sdTokenId = "06ddb43f-3325-6465-e063-62199f0a727b"
-        SaveData.shared().sdAuthorization = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZGRkMWE3OS02MjcxLTExZWUtOGRkMS04NzgyOTM2ZDZmYTYiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoidGVjaC5xdWFuaGhAYW5lZWQudm4iLCJzY29wZSI6WyJyZWFkIl0sImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0IiwibmFtZSI6InRlY2gucXVhbmhoQGFuZWVkLnZuIiwiZXhwIjoxNjk4OTg2ODQ2LCJ1dWlkX2FjY291bnQiOiIxZGRkMWE3OS02MjcxLTExZWUtOGRkMS04NzgyOTM2ZDZmYTYiLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6ImY0N2IzMTNhLWQ2OTMtNDFmNi1hNGFkLTUwODY3NTk0YzkwMyIsImNsaWVudF9pZCI6ImNsaWVudGFwcCJ9.58QbsIN8By0W6z6W6PFn_E5IwMdBB5HoJIBiZpUQI44vFnMd29WbA45ZG5J-qp0VEi6Tbg61l2JkM-G4hbmktlgT1emszP0Rz1PczWVfO8eFaLSxWZwI7U9jvINsOpNR7WRNGammWmWlaAc3vrIM2k1Pmz7QQ0QZtTVfiOhojzk9b7DF5jymfYNldLM3EcqDo71MCtTcWUFht6hcBjAGti84vAvB2-SUeZUeN3aJweaGUpL6zlTyisBZ0nONL8rXKgKrk4bLTuYZW4x3P1pCEHOz77H8CC_DNPrjrGHHbLpepf51dc09I3XwW3u6aTgZFx3ecPgi3f0TcThIrj2Ghg"
+        SaveData.shared().sdTokenKey = self.tokenKey ??  "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAN1TyucVW7qKt8TD7e3JYxUPURu9i6LvC+jJbF7OM6bLL+GGZnjZiev4KrUL8ZE7p874RpY2gcu0F9zUmFst+/8CAwEAAQ=="
+        print(self.tokenKey)
+        SaveData.shared().sdTokenId = self.tokenId ?? "06ddb43f-3325-6465-e063-62199f0a727b"
+        print(self.tokenId)
+        SaveData.shared().sdAuthorization = self.acccessToken ?? "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZGRkMWE3OS02MjcxLTExZWUtOGRkMS04NzgyOTM2ZDZmYTYiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoidGVjaC5xdWFuaGhAYW5lZWQudm4iLCJzY29wZSI6WyJyZWFkIl0sImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0IiwibmFtZSI6InRlY2gucXVhbmhoQGFuZWVkLnZuIiwiZXhwIjoxNjk4OTg2ODQ2LCJ1dWlkX2FjY291bnQiOiIxZGRkMWE3OS02MjcxLTExZWUtOGRkMS04NzgyOTM2ZDZmYTYiLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6ImY0N2IzMTNhLWQ2OTMtNDFmNi1hNGFkLTUwODY3NTk0YzkwMyIsImNsaWVudF9pZCI6ImNsaWVudGFwcCJ9.58QbsIN8By0W6z6W6PFn_E5IwMdBB5HoJIBiZpUQI44vFnMd29WbA45ZG5J-qp0VEi6Tbg61l2JkM-G4hbmktlgT1emszP0Rz1PczWVfO8eFaLSxWZwI7U9jvINsOpNR7WRNGammWmWlaAc3vrIM2k1Pmz7QQ0QZtTVfiOhojzk9b7DF5jymfYNldLM3EcqDo71MCtTcWUFht6hcBjAGti84vAvB2-SUeZUeN3aJweaGUpL6zlTyisBZ0nONL8rXKgKrk4bLTuYZW4x3P1pCEHOz77H8CC_DNPrjrGHHbLpepf51dc09I3XwW3u6aTgZFx3ecPgi3f0TcThIrj2Ghg"
+        print(self.acccessToken)
         objCamera.cameraDelegate = self
         objCamera.isVersion = Normal
         objCamera.flowType = full
         objCamera.isType = IdentityCard
+        objCamera.isShowResult = true
         
         objCamera.isCompare = true
         objCamera.isShowHelp = true

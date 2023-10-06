@@ -26,6 +26,8 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
+    await _vnptKycPlugin.setToken(
+        tokenId: "tokenId", tokenKey: "tokenKey", accessToken: "accessToken");
     KycResult? platformVersion = await _vnptKycPlugin.getEkycVNPT();
     if (kDebugMode) {
       print(platformVersion);

@@ -30,6 +30,9 @@ class VnptEkycPlugin :
     private lateinit var channel: MethodChannel
     private lateinit var result: MethodChannel.Result
     private var activity: Activity? = null
+    private var tokenId: String? = null
+    private var tokenKey: String? = null
+    private var accessToken: String? = null
 
     override fun onAttachedToEngine(
         @NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding
@@ -40,7 +43,11 @@ class VnptEkycPlugin :
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         if (call.method == "getEkycVNPT") {
+            val hashMap = call.arguments as HashMap<*,*>
             this.result = result
+            this.tokenId = hashMap["tokenId"] as? String
+            this.tokenKey = hashMap["tokenKey"] as? String
+            this.accessToken = hashMap["accessToken"] as? String
             openEKYC(call, result)
         } else {
             result.notImplemented()
@@ -81,17 +88,17 @@ class VnptEkycPlugin :
         if (intent != null) {
             intent.putExtra(
                 ACCESS_TOKEN,
-                "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNjY3MmIxZC1kMjcwLTFjMWUtZTA2My02MzE5OWYwYWJjMDUiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoib25ndGV1MzNAZ21haWwuY29tIiwic2NvcGUiOlsicmVhZCJdLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdCIsIm5hbWUiOiJvbmd0ZXUzM0BnbWFpbC5jb20iLCJ1dWlkX2FjY291bnQiOiIwNjY3MmIxZC1kMjcwLTFjMWUtZTA2My02MzE5OWYwYWJjMDUiLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6Ijc2MTgyZWY2LWRlODYtNDNhZC1iZDNkLTUxZWM3ODYxNjdlYSIsImNsaWVudF9pZCI6ImFkbWluYXBwIn0.J-309207sJWfG1xkSAI8ZBK6O8PBMmGgAS403PwYSqTxXTMRpU3Gqg5jc4ycZM3rLEbJzKNi58-rDuWSLUjG2UyNpFhj6jR8d7ZmifpBOPs56kOqwCzN821xO8lFU_SlgLwUx8qyKdvsZG9VxRINHVldrg5zs0OHBFru52ePTKWMUoBoS6669xrNrCw-JDb_CucXxKAnGUrqwWNECWv72Vj66E1ave3BAItQaGAuD33_6gqzsmtSC1-PhOatCv9RlK3UaI0G8Kn9vQTNAoo1dY8O8qSKZfUqsxAl2p1-5jLr0IzzaqX9UoYqHOxsWVCENKTmT2cdlJ2vPZz5dVBmgw"
+                accessToken ?: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNjY3MmIxZC1kMjcwLTFjMWUtZTA2My02MzE5OWYwYWJjMDUiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoib25ndGV1MzNAZ21haWwuY29tIiwic2NvcGUiOlsicmVhZCJdLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdCIsIm5hbWUiOiJvbmd0ZXUzM0BnbWFpbC5jb20iLCJ1dWlkX2FjY291bnQiOiIwNjY3MmIxZC1kMjcwLTFjMWUtZTA2My02MzE5OWYwYWJjMDUiLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6Ijc2MTgyZWY2LWRlODYtNDNhZC1iZDNkLTUxZWM3ODYxNjdlYSIsImNsaWVudF9pZCI6ImFkbWluYXBwIn0.J-309207sJWfG1xkSAI8ZBK6O8PBMmGgAS403PwYSqTxXTMRpU3Gqg5jc4ycZM3rLEbJzKNi58-rDuWSLUjG2UyNpFhj6jR8d7ZmifpBOPs56kOqwCzN821xO8lFU_SlgLwUx8qyKdvsZG9VxRINHVldrg5zs0OHBFru52ePTKWMUoBoS6669xrNrCw-JDb_CucXxKAnGUrqwWNECWv72Vj66E1ave3BAItQaGAuD33_6gqzsmtSC1-PhOatCv9RlK3UaI0G8Kn9vQTNAoo1dY8O8qSKZfUqsxAl2p1-5jLr0IzzaqX9UoYqHOxsWVCENKTmT2cdlJ2vPZz5dVBmgw"
             )
-            intent.putExtra(TOKEN_ID, "06673ea5-d1d2-6598-e063-62199f0ab8a7")
+            intent.putExtra(TOKEN_ID,tokenId ?: "06673ea5-d1d2-6598-e063-62199f0ab8a7")
             intent.putExtra(
-                TOKEN_KEY,
+                TOKEN_KEY,tokenKey ?:
                 "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIPgyURtmC7HgvOFtopGgKAsCTFImoChamIgbix80gnuizkIzcuC4wbZvt/74oZn0MxeX94BxTFlsEg2g153Qn8CAwEAAQ=="
             )
             intent.putExtra(DOCUMENT_TYPE, SDKEnum.DocumentTypeEnum.IDENTITY_CARD.getValue())
             intent.putExtra(SELECT_DOCUMENT, false)
             intent.putExtra(VERSION_SDK, SDKEnum.VersionSDKEnum.ADVANCED.getValue())
-            intent.putExtra(SHOW_RESULT, false)
+            intent.putExtra(SHOW_RESULT, true)
             intent.putExtra(SHOW_DIALOG_SUPPORT, false)
             intent.putExtra(CAMERA_FOR_PORTRAIT, SDKEnum.CameraTypeEnum.FRONT.getValue())
             intent.putExtra(SHOW_SWITCH, false)

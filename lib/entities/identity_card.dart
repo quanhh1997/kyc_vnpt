@@ -31,6 +31,23 @@ class IdentityCard {
   Map<String, dynamic> toJson() => _$IdentityCardToJson(this);
 }
 
+extension KYC on IdentityCard {
+  bool kycSuccess() {
+    return object?.addressFakeWarning == false &&
+        object?.backCornerWarning == 'no' &&
+        object?.backExpireWarning == 'no' &&
+        object?.checkingResultBack?.checkPhotocopiedResult == '0' &&
+        object?.checkingResultFront?.checkPhotocopiedResult == '0' &&
+        object?.cornerWarning == 'no' &&
+        object?.dobFakeWarning == false &&
+        object?.expireWarning == 'no' &&
+        object?.idFakeWarning == 'no' &&
+        object?.issuedateFakeWarning == false &&
+        object?.nameFakeWarning == 'real' &&
+        object?.tampering?.isLegal == 'yes';
+  }
+}
+
 @JsonSerializable()
 class Imgs {
   @JsonKey(name: "img_back")

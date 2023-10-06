@@ -24,7 +24,8 @@ abstract class VnptEkycPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<KycResult?> getEkycVNPT() {
+  Future<KycResult?> getEkycVNPT(
+      {String? accessToken, String? tokenId, String? tokenKey}) {
     throw UnimplementedError('getKycVNPT() has not been implemented.');
   }
 }

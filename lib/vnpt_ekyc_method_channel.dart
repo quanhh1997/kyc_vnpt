@@ -14,9 +14,14 @@ class MethodChannelVnptEkyc extends VnptEkycPlatform {
   final methodChannel = const MethodChannel('vnpt_ekyc');
 
   @override
-  Future<KycResult?> getEkycVNPT() async {
+  Future<KycResult?> getEkycVNPT(
+      {String? accessToken, String? tokenId, String? tokenKey}) async {
     final Map<dynamic, dynamic>? data =
-        await methodChannel.invokeMethod<Map<dynamic, dynamic>>('getEkycVNPT');
+        await methodChannel.invokeMethod<Map<dynamic, dynamic>>('getEkycVNPT', {
+      'tokenId': tokenId,
+      'tokenKey': tokenKey,
+      'accessToken': accessToken,
+    });
     final KycResult kycResult = KycResult(
         identityCard: IdentityCard.fromJson(jsonDecode(data?['INFO_RESULT'])),
         imageBack: data?['REAR_IMAGE'],
