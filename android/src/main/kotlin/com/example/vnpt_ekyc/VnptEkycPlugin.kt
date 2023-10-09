@@ -98,7 +98,7 @@ class VnptEkycPlugin :
             intent.putExtra(DOCUMENT_TYPE, SDKEnum.DocumentTypeEnum.IDENTITY_CARD.getValue())
             intent.putExtra(SELECT_DOCUMENT, false)
             intent.putExtra(VERSION_SDK, SDKEnum.VersionSDKEnum.ADVANCED.getValue())
-            intent.putExtra(SHOW_RESULT, true)
+            intent.putExtra(SHOW_RESULT, false)
             intent.putExtra(SHOW_DIALOG_SUPPORT, false)
             intent.putExtra(CAMERA_FOR_PORTRAIT, SDKEnum.CameraTypeEnum.FRONT.getValue())
             intent.putExtra(SHOW_SWITCH, false)

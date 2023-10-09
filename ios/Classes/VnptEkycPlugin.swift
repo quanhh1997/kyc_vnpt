@@ -45,7 +45,7 @@ public class VnptEkycPlugin: NSObject, FlutterPlugin, ICEkycCameraDelegate{
         objCamera.isVersion = Normal
         objCamera.flowType = full
         objCamera.isType = IdentityCard
-        objCamera.isShowResult = true
+        objCamera.isShowResult = false
         
         objCamera.isCompare = true
         objCamera.isShowHelp = true
