@@ -35,11 +35,11 @@ public class VnptEkycPlugin: NSObject, FlutterPlugin, ICEkycCameraDelegate{
   func openSDKeKYC(_ controller:UIViewController) {
         let objCamera = ICEkycCameraRouter.createModule() as! ICEkycCameraViewController
         // Key test on side Product
-        SaveData.shared().sdTokenKey = self.tokenKey ??  "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAN1TyucVW7qKt8TD7e3JYxUPURu9i6LvC+jJbF7OM6bLL+GGZnjZiev4KrUL8ZE7p874RpY2gcu0F9zUmFst+/8CAwEAAQ=="
+        SaveData.shared().sdTokenKey = self.tokenKey ??  "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAI8ywK5myC1d/TCuroUpi+BVGRuwzRM49oos1oyk1DvAdvn4KspGOjGQwcPE8bJk2Hm665sBdM1f2oORkF3eI70CAwEAAQ=="
         print(self.tokenKey)
-        SaveData.shared().sdTokenId = self.tokenId ?? "06ddb43f-3325-6465-e063-62199f0a727b"
+        SaveData.shared().sdTokenId = self.tokenId ?? "07097696-78b8-3204-e063-63199f0aab85"
         print(self.tokenId)
-        SaveData.shared().sdAuthorization = self.acccessToken ?? "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZGRkMWE3OS02MjcxLTExZWUtOGRkMS04NzgyOTM2ZDZmYTYiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoidGVjaC5xdWFuaGhAYW5lZWQudm4iLCJzY29wZSI6WyJyZWFkIl0sImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0IiwibmFtZSI6InRlY2gucXVhbmhoQGFuZWVkLnZuIiwiZXhwIjoxNjk4OTg2ODQ2LCJ1dWlkX2FjY291bnQiOiIxZGRkMWE3OS02MjcxLTExZWUtOGRkMS04NzgyOTM2ZDZmYTYiLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6ImY0N2IzMTNhLWQ2OTMtNDFmNi1hNGFkLTUwODY3NTk0YzkwMyIsImNsaWVudF9pZCI6ImNsaWVudGFwcCJ9.58QbsIN8By0W6z6W6PFn_E5IwMdBB5HoJIBiZpUQI44vFnMd29WbA45ZG5J-qp0VEi6Tbg61l2JkM-G4hbmktlgT1emszP0Rz1PczWVfO8eFaLSxWZwI7U9jvINsOpNR7WRNGammWmWlaAc3vrIM2k1Pmz7QQ0QZtTVfiOhojzk9b7DF5jymfYNldLM3EcqDo71MCtTcWUFht6hcBjAGti84vAvB2-SUeZUeN3aJweaGUpL6zlTyisBZ0nONL8rXKgKrk4bLTuYZW4x3P1pCEHOz77H8CC_DNPrjrGHHbLpepf51dc09I3XwW3u6aTgZFx3ecPgi3f0TcThIrj2Ghg"
+        SaveData.shared().sdAuthorization = self.acccessToken ?? "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiNTI5YmJlMS02NDI2LTExZWUtOGRkMS02N2M3YWNmNTNiMmUiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoicXVhbmhoLm5hbmdAZ21haWwuY29tIiwic2NvcGUiOlsicmVhZCJdLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdCIsIm5hbWUiOiJxdWFuaGgubmFuZ0BnbWFpbC5jb20iLCJleHAiOjE2OTk0MTg3NDgsInV1aWRfYWNjb3VudCI6ImI1MjliYmUxLTY0MjYtMTFlZS04ZGQxLTY3YzdhY2Y1M2IyZSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiNTdlYmE4YzgtYjU0MS00YzIzLWJiNWMtYjI1ZmI0ZTg2NzQ1IiwiY2xpZW50X2lkIjoiY2xpZW50YXBwIn0.HDfUQ7CBfjs5icEm9EQRJK5Q2msObj-5zFnUMpotj3Y0P7Ds7R9kzbUAAaxXe3h0R76vUvAUCaINWpTctg94NaCzoa9pKnLzRK2tDnBFQD7kloyfCwmHuGum-DTDtOVGHsFdoKUdyWIdZi8oZB7SDql5yR5IQ6nsIowUpkH78vxWJfxQ7eRJ6a-kG03Nc2npOcG0l6AL1fevex_kvGmWt28YqElxamSxjtkMnka9u3OmgFsCSJAQgnij96gvHBo4a8OgfKk-Nt6Q1DFs3Zdx991ie9gR2hsgFpmobse2b1_E64TyZx6bNBDPmYtIq3cM51zQP_IY5yCtxPhulmQVBA"
         print(self.acccessToken)
         objCamera.cameraDelegate = self
         objCamera.isVersion = Normal

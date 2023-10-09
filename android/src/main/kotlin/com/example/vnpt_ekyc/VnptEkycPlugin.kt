@@ -88,9 +88,9 @@ class VnptEkycPlugin :
         if (intent != null) {
             intent.putExtra(
                 ACCESS_TOKEN,
-                accessToken ?: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNjY3MmIxZC1kMjcwLTFjMWUtZTA2My02MzE5OWYwYWJjMDUiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoib25ndGV1MzNAZ21haWwuY29tIiwic2NvcGUiOlsicmVhZCJdLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdCIsIm5hbWUiOiJvbmd0ZXUzM0BnbWFpbC5jb20iLCJ1dWlkX2FjY291bnQiOiIwNjY3MmIxZC1kMjcwLTFjMWUtZTA2My02MzE5OWYwYWJjMDUiLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImp0aSI6Ijc2MTgyZWY2LWRlODYtNDNhZC1iZDNkLTUxZWM3ODYxNjdlYSIsImNsaWVudF9pZCI6ImFkbWluYXBwIn0.J-309207sJWfG1xkSAI8ZBK6O8PBMmGgAS403PwYSqTxXTMRpU3Gqg5jc4ycZM3rLEbJzKNi58-rDuWSLUjG2UyNpFhj6jR8d7ZmifpBOPs56kOqwCzN821xO8lFU_SlgLwUx8qyKdvsZG9VxRINHVldrg5zs0OHBFru52ePTKWMUoBoS6669xrNrCw-JDb_CucXxKAnGUrqwWNECWv72Vj66E1ave3BAItQaGAuD33_6gqzsmtSC1-PhOatCv9RlK3UaI0G8Kn9vQTNAoo1dY8O8qSKZfUqsxAl2p1-5jLr0IzzaqX9UoYqHOxsWVCENKTmT2cdlJ2vPZz5dVBmgw"
+                accessToken ?: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiNTI5YmJlMS02NDI2LTExZWUtOGRkMS02N2M3YWNmNTNiMmUiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwidXNlcl9uYW1lIjoicXVhbmhoLm5hbmdAZ21haWwuY29tIiwic2NvcGUiOlsicmVhZCJdLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdCIsIm5hbWUiOiJxdWFuaGgubmFuZ0BnbWFpbC5jb20iLCJleHAiOjE2OTk0MTg3NDgsInV1aWRfYWNjb3VudCI6ImI1MjliYmUxLTY0MjYtMTFlZS04ZGQxLTY3YzdhY2Y1M2IyZSIsImF1dGhvcml0aWVzIjpbIlVTRVIiXSwianRpIjoiNTdlYmE4YzgtYjU0MS00YzIzLWJiNWMtYjI1ZmI0ZTg2NzQ1IiwiY2xpZW50X2lkIjoiY2xpZW50YXBwIn0.HDfUQ7CBfjs5icEm9EQRJK5Q2msObj-5zFnUMpotj3Y0P7Ds7R9kzbUAAaxXe3h0R76vUvAUCaINWpTctg94NaCzoa9pKnLzRK2tDnBFQD7kloyfCwmHuGum-DTDtOVGHsFdoKUdyWIdZi8oZB7SDql5yR5IQ6nsIowUpkH78vxWJfxQ7eRJ6a-kG03Nc2npOcG0l6AL1fevex_kvGmWt28YqElxamSxjtkMnka9u3OmgFsCSJAQgnij96gvHBo4a8OgfKk-Nt6Q1DFs3Zdx991ie9gR2hsgFpmobse2b1_E64TyZx6bNBDPmYtIq3cM51zQP_IY5yCtxPhulmQVBA"
             )
-            intent.putExtra(TOKEN_ID,tokenId ?: "06673ea5-d1d2-6598-e063-62199f0ab8a7")
+            intent.putExtra(TOKEN_ID,tokenId ?: "07097696-78b8-3204-e063-63199f0aab85")
             intent.putExtra(
                 TOKEN_KEY,tokenKey ?:
                 "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIPgyURtmC7HgvOFtopGgKAsCTFImoChamIgbix80gnuizkIzcuC4wbZvt/74oZn0MxeX94BxTFlsEg2g153Qn8CAwEAAQ=="
